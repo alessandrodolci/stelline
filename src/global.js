@@ -50,6 +50,7 @@ const showScore = () => {
 const showGameOver = () => {
     context.fillStyle = "white";
     context.font = "72px mono";
+    context.textAlign = "center";
     context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
 };
 

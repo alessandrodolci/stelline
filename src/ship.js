@@ -16,7 +16,7 @@ function Ship() {
     this.fireShot = (targetX, targetY) => {
         this.shots.push(new Shot(this.x, this.y, targetX, targetY));
     };
-};
+}
 
 function Shot(originX, originY, targetX, targetY) {
     this.x = originX;
@@ -24,7 +24,7 @@ function Shot(originX, originY, targetX, targetY) {
     this.targetX = targetX;
     this.targetY = targetY;
     this.hit = false;
-};
+}
 
 const spawnShip = () => {
     context.beginPath();

@@ -120,11 +120,7 @@ const animate = () => {
     });
 
     checkCollisions(stars, ship);
-
-    if (shouldRender) {
+    
+    if (!gameOver) {
         window.requestAnimationFrame(animate);
-    }
-    if (gameOver) {
-        shouldRender = false;
-    }
 };

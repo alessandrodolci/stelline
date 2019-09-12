@@ -5,6 +5,7 @@ const SHIP_INITIAL_VERTICAL_POSITION = (canvas.height / 6) * 5;
 const SHIP_HORIZONTAL_SPEED = 2;
 const SHIP_VERTICAL_SPEED = 1;
 const SHOTS_SIZE = 4;
+const SHOTS_SPEED = 4;
 
 function Ship() {
     this.x = SHIP_INITIAL_HORIZONTAL_POSITION;
@@ -58,7 +59,7 @@ const drawShot = (shot) => {
 };
 
 const animateShot = (shot) => {
-    shot.y = shot.y - 4;
+    shot.y = shot.y - SHOTS_SPEED;
     
     if (shot.y === 0) {
         shot.hit = true;

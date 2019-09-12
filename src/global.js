@@ -51,7 +51,7 @@ const showGameOver = () => {
     context.fillStyle = "white";
     context.font = "72px mono";
     context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
-}
+};
 
 const endGame = (stars, ship) => {
     ship.visible = false;
@@ -123,4 +123,5 @@ const animate = () => {
     
     if (!gameOver) {
         window.requestAnimationFrame(animate);
+    }
 };

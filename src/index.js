@@ -12,4 +12,6 @@ let shouldRender = true;
 
 bindKeys();
 
+listenToOrientationChange();
+
 window.requestAnimationFrame(animate);

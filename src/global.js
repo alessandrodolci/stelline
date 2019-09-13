@@ -41,6 +41,29 @@ const bindKeys = () => {
     }
 };
 
+const listenToOrientationChange = () => {
+    window.addEventListener(
+        "deviceorientation",
+        (event) => {
+            const beta = event.beta;
+            const gamma = event.gamma;
+
+            if (beta > 90) {
+                beta = 90;
+            }
+            if (beta < -90) {
+                beta = -90;
+            }
+
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].x += gamma;
+                stars[i].y += beta;
+            }
+        },
+        true
+    );
+};
+
 const showScore = () => {
     context.fillStyle = "white";
     context.font = "24px mono";

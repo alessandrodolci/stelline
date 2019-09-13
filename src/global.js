@@ -56,8 +56,8 @@ const listenToOrientationChange = () => {
             }
 
             for (let i = 0; i < stars.length; i++) {
-                stars[i].x += gamma;
-                stars[i].y += beta;
+                stars[i].x += gamma / 5;
+                stars[i].y += beta / 5;
             }
         },
         true

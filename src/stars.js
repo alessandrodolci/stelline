@@ -1,7 +1,7 @@
 const MIN_STAR_SIZE = 1;
 const MAX_STAR_SIZE = 8;
 const CYCLES_THRESHOLD = 200;
-const MAX_STARS = 100;
+const MAX_STARS = 200;
 
 function Star() {
     this.x = ORIGIN_X;

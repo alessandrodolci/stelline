@@ -40,9 +40,24 @@ const bindKeys = () => {
 };
 
 const listenToOrientationChange = () => {
-    let initialBeta, initialGamma;
+    let initialBeta = 0;
+    let initialGamma = 0;
+
+    const initialListener = (event) => {
+        console.log("initialListener");
+        initialBeta = event.beta;
+        initialGamma = event.gamma;
+
+        if (initialBeta > 90) {
+            initialBeta = 90;
+        }
+        if (initialBeta < -90) {
+            initialBeta = -90;
+        }
+    };
 
     const orientationListener = (event) => {
+        console.log("orientationListener");
         const beta = event.beta - initialBeta;
         const gamma = event.gamma - initialGamma;
 
@@ -61,21 +76,8 @@ const listenToOrientationChange = () => {
         }
     };
 
-    const initialListener = (event) => {
-        initialBeta = event.beta;
-        initialGamma = event.gamma;
-
-        if (initialBeta > 90) {
-            initialBeta = 90;
-        }
-        if (initialBeta < -90) {
-            initialBeta = -90;
-        }
-
-        window.addEventListener("deviceorientation", orientationListener, true);
-    };
-
-    window.addEventListener("deviceorientation", orientationListener, true);
+    window.addEventListener("deviceorientation", initialListener, { once: true });
+    window.addEventListener("deviceorientation", orientationListener);
 };
 
 const showScore = () => {

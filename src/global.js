@@ -53,10 +53,11 @@ const listenToOrientationChange = () => {
                 beta = -90;
             }
 
+            ship.moveVertically(beta);
+
             for (let i = 0; i < stars.length; i++) {
                 stars[i].x -= gamma / 5;
                 stars[i].y += beta / 5;
-                ship.moveVertically(beta);
             }
         },
         true

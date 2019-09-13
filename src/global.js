@@ -44,7 +44,6 @@ const listenToOrientationChange = () => {
     let initialGamma = 0;
 
     const initialListener = (event) => {
-        console.log("initialListener");
         initialBeta = event.beta;
         initialGamma = event.gamma;
 
@@ -57,7 +56,6 @@ const listenToOrientationChange = () => {
     };
 
     const orientationListener = (event) => {
-        console.log("orientationListener");
         const beta = event.beta - initialBeta;
         const gamma = event.gamma - initialGamma;
 

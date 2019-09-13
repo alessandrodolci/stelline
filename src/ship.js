@@ -1,4 +1,4 @@
-const SHIP_SIZE = 16;
+const SHIP_SIZE = 30;
 const SHIP_LINE_WIDTH = 1.5;
 const SHIP_INITIAL_HORIZONTAL_POSITION = ORIGIN_X;
 const SHIP_INITIAL_VERTICAL_POSITION = (canvas.height / 6) * 5;
@@ -15,7 +15,7 @@ function Ship() {
     this.visible = true;
     this.moveVertically = (speed) => {
         ship.y += speed;
-        ship.size += speed / 3;
+        ship.size += speed / 6;
     }
     this.fireShot = (targetX, targetY) => {
         this.shots.push(new Shot(this.x, this.y, targetX, targetY));

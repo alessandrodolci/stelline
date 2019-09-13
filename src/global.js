@@ -53,7 +53,7 @@ const listenToOrientationChange = () => {
                 beta = -90;
             }
 
-            ship.moveVertically(beta / 5);
+            ship.moveVertically(beta / 20);
 
             for (let i = 0; i < stars.length; i++) {
                 stars[i].x -= gamma / 5;

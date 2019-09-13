@@ -20,13 +20,11 @@ const bindKeys = () => {
                 break;
             case "ArrowUp":
             case "KeyW":
-                ship.y = ship.y - SHIP_VERTICAL_SPEED;
-                ship.size = ship.size - 0.4;
+                ship.moveVertically(-SHIP_VERTICAL_SPEED);
                 break;
             case "ArrowDown":
             case "KeyS":
-                ship.y = ship.y + SHIP_VERTICAL_SPEED;
-                ship.size = ship.size + 0.4;
+                ship.moveVertically(SHIP_VERTICAL_SPEED);
                 break;
             case "KeyZ":
                 ship.fireShot();
@@ -58,6 +56,7 @@ const listenToOrientationChange = () => {
             for (let i = 0; i < stars.length; i++) {
                 stars[i].x -= gamma / 5;
                 stars[i].y += beta / 5;
+                ship.moveVertically(beta);
             }
         },
         true

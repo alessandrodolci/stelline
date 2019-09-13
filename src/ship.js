@@ -13,6 +13,10 @@ function Ship() {
     this.size = SHIP_SIZE;
     this.shots = [];
     this.visible = true;
+    this.moveVertically = (speed) => {
+        ship.y += speed;
+        ship.size += speed / 3;
+    }
     this.fireShot = (targetX, targetY) => {
         this.shots.push(new Shot(this.x, this.y, targetX, targetY));
     };

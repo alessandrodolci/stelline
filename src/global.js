@@ -56,7 +56,7 @@ const listenToOrientationChange = () => {
             }
 
             for (let i = 0; i < stars.length; i++) {
-                stars[i].x += gamma / 5;
+                stars[i].x -= gamma / 5;
                 stars[i].y += beta / 5;
             }
         },
@@ -113,7 +113,6 @@ const checkShotsCollisions = (stars, shots) => {
                 && shot.y - star.y < star.size && shot.y - star.y > -star.size
                 && star.visible === true) {
                 shot.hit = true;
-                score++;
                 star.respawn();
             }
         }

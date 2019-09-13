@@ -46,6 +46,7 @@ const animateStars = (stars) => {
         star.y += star.vy;
         if (star.x > canvas.width - star.size || star.x < star.size
             || star.y > canvas.height - star.size || star.y < star.size) {
+            score++;
             star.respawn();
         }
     }

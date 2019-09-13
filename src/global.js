@@ -40,28 +40,42 @@ const bindKeys = () => {
 };
 
 const listenToOrientationChange = () => {
-    window.addEventListener(
-        "deviceorientation",
-        (event) => {
-            const beta = event.beta;
-            const gamma = event.gamma;
+    let initialBeta, initialGamma;
 
-            if (beta > 90) {
-                beta = 90;
-            }
-            if (beta < -90) {
-                beta = -90;
-            }
+    const orientationListener = (event) => {
+        const beta = event.beta - initialBeta;
+        const gamma = event.gamma - initialGamma;
 
-            ship.moveVertically(beta / 20);
+        if (beta > 90) {
+            beta = 90;
+        }
+        if (beta < -90) {
+            beta = -90;
+        }
 
-            for (let i = 0; i < stars.length; i++) {
-                stars[i].x -= gamma / 5;
-                stars[i].y += beta / 5;
-            }
-        },
-        true
-    );
+        ship.moveVertically(beta / 20);
+
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].x -= gamma / 5;
+            stars[i].y += beta / 5;
+        }
+    };
+
+    const initialListener = (event) => {
+        initialBeta = event.beta;
+        initialGamma = event.gamma;
+
+        if (initialBeta > 90) {
+            initialBeta = 90;
+        }
+        if (initialBeta < -90) {
+            initialBeta = -90;
+        }
+
+        window.addEventListener("deviceorientation", orientationListener, true);
+    };
+
+    window.addEventListener("deviceorientation", initialListener, true);
 };
 
 const showScore = () => {

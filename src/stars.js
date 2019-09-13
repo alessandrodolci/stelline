@@ -38,7 +38,7 @@ const animateStars = (stars) => {
             context.fill();
             star.cycles++;
         }
-        else if (Math.random() > 0.995) {
+        else if (Math.random() > 0.995 && !isShipColliding(star, ship)) {
             star.visible = true;
         }
 
@@ -46,7 +46,10 @@ const animateStars = (stars) => {
         star.y += star.vy;
         if (star.x > canvas.width - star.size || star.x < star.size
             || star.y > canvas.height - star.size || star.y < star.size) {
-            score++;
+            if (star.y > canvas.height - star.size) {
+                score++;
+            }
+            
             star.respawn();
         }
     }

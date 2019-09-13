@@ -106,12 +106,20 @@ const endGame = (stars, ship) => {
     gameOver = true;
 };
 
+const isShipColliding = (star, ship) => {
+    if (ship.x - star.x < SHIP_SIZE && ship.x - star.x > -SHIP_SIZE
+        && ship.y - star.y < SHIP_SIZE && ship.y - star.y > -SHIP_SIZE
+        && star.visible === true) {
+        return true;
+    }
+
+    return false;
+}
+
 const checkShipCollisions = (stars, ship) => {
     for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
-        if (ship.x - star.x < SHIP_SIZE && ship.x - star.x > -SHIP_SIZE
-            && ship.y - star.y < SHIP_SIZE && ship.y - star.y > -SHIP_SIZE
-            && star.visible === true) {
+        if (isShipColliding(star, ship)) {
             ship.visible = false;
             endGame(stars, ship);
         }

@@ -36,7 +36,7 @@ const spawnShip = () => {
     context.moveTo(ship.x - ship.size, ship.y + ship.size / 4);
     context.lineTo(ship.x, ship.y - ship.size / 2);
     context.lineTo(ship.x + ship.size, ship.y + ship.size / 4);
-    context.lineTo(ship.x, ship.y + ship.size / 6);
+    context.lineTo(ship.x, ship.y + ship.size / 3);
     context.lineTo(ship.x - ship.size, ship.y + ship.size / 4);
 
     context.moveTo(ship.x, ship.y - ship.size / 8);

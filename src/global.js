@@ -75,7 +75,7 @@ const listenToOrientationChange = () => {
         window.addEventListener("deviceorientation", orientationListener, true);
     };
 
-    window.addEventListener("deviceorientation", initialListener, true);
+    window.addEventListener("deviceorientation", orientationListener, true);
 };
 
 const showScore = () => {

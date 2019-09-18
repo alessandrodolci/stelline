@@ -1,0 +1,36 @@
+{
+    "name": "stelline",
+    "version": "1.0.0",
+    "description": "A simple demo using CanvasRenderingContext2D",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --config webpack.config.js --mode=production",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alessandrodolci/stelline.git"
+    },
+    "keywords": [
+        "canvas",
+        "CanvasRenderingContext2D",
+        "2D",
+        "game",
+        "demo",
+        "space",
+        "stars"
+    ],
+    "author": "Alessandro Dolci",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/alessandrodolci/stelline/issues"
+    },
+    "homepage": "https://github.com/alessandrodolci/stelline#readme",
+    "devDependencies": {
+        "webpack": "^4.40.2",
+        "webpack-cli": "^3.3.8"
+    },
+    "dependencies": {
+        "html-webpack-plugin": "^3.2.0"
+    }
+}

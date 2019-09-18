@@ -1,73 +1,66 @@
 const SHIP_SIZE = 30;
 const SHIP_LINE_WIDTH = 1.5;
-const SHIP_INITIAL_HORIZONTAL_POSITION = ORIGIN_X;
-const SHIP_INITIAL_VERTICAL_POSITION = (canvas.height / 6) * 5;
-const SHIP_HORIZONTAL_SPEED = 2;
-const SHIP_VERTICAL_SPEED = 1;
-const SHOTS_SIZE = 4;
-const SHOTS_SPEED = 4;
+export const SHIP_HORIZONTAL_SPEED = 1;
+export const SHIP_VERTICAL_SPEED = 0.4;
 
-function Ship() {
-    this.x = SHIP_INITIAL_HORIZONTAL_POSITION;
-    this.y = SHIP_INITIAL_VERTICAL_POSITION;
+const SHOTS_SIZE = 4;
+export const SHOTS_SPEED = 4;
+
+const canvas = document.getElementById('stars');
+const context = canvas.getContext('2d');
+
+export function Ship(initialX, initialY) {
+    this.x = initialX;
+    this.y = initialY;
     this.size = SHIP_SIZE;
     this.shots = [];
     this.visible = true;
     this.moveVertically = (speed) => {
-        ship.y += speed;
-        ship.size += speed / 6;
+        this.y += speed;
+        this.size += speed / 6;
+    };
+    this.moveHorizontally = (speed) => {
+        this.x += speed;
+    };
+    this.draw = () => {
+        context.beginPath();
+
+        context.moveTo(this.x - this.size, this.y + this.size / 4);
+        context.lineTo(this.x, this.y - this.size / 2);
+        context.lineTo(this.x + this.size, this.y + this.size / 4);
+        context.lineTo(this.x, this.y + this.size / 3);
+        context.lineTo(this.x - this.size, this.y + this.size / 4);
+
+        context.moveTo(this.x, this.y - this.size / 8);
+        context.lineTo(this.x - this.size, this.y + this.size / 4);
+
+        context.moveTo(this.x, this.y - this.size / 8);
+        context.lineTo(this.x + this.size, this.y + this.size / 4);
+
+        context.moveTo(this.x, this.y - this.size / 8);
+        context.lineTo(this.x, this.y - this.size / 2);
+
+        context.closePath();
+        context.strokeStyle = "white";
+        context.lineWidth = SHIP_LINE_WIDTH;
+        context.stroke();
     }
     this.fireShot = (targetX, targetY) => {
-        this.shots.push(new Shot(this.x, this.y, targetX, targetY));
+        this.shots.push(new Shot(this.x, this.y - this.size / 2, targetX, targetY));
     };
 }
 
 function Shot(originX, originY, targetX, targetY) {
     this.x = originX;
-    this.y = originY - ship.size / 2;
+    this.y = originY;
     this.targetX = targetX;
     this.targetY = targetY;
     this.hit = false;
-}
-
-const spawnShip = () => {
-    context.beginPath();
-
-    context.moveTo(ship.x - ship.size, ship.y + ship.size / 4);
-    context.lineTo(ship.x, ship.y - ship.size / 2);
-    context.lineTo(ship.x + ship.size, ship.y + ship.size / 4);
-    context.lineTo(ship.x, ship.y + ship.size / 3);
-    context.lineTo(ship.x - ship.size, ship.y + ship.size / 4);
-
-    context.moveTo(ship.x, ship.y - ship.size / 8);
-    context.lineTo(ship.x - ship.size, ship.y + ship.size / 4);
-
-    context.moveTo(ship.x, ship.y - ship.size / 8);
-    context.lineTo(ship.x + ship.size, ship.y + ship.size / 4);
-
-    context.moveTo(ship.x, ship.y - ship.size / 8);
-    context.lineTo(ship.x, ship.y - ship.size / 2);
-
-    context.closePath();
-    context.strokeStyle = "white";
-    context.lineWidth = SHIP_LINE_WIDTH;
-    context.stroke();
-};
-
-const drawShot = (shot) => {
-    context.beginPath();
-    context.ellipse(shot.x, shot.y, SHOTS_SIZE / 2, SHOTS_SIZE / 2, 0, 0, 2 * Math.PI);
-    context.closePath();
-    context.fillStyle = "grey";
-    context.fill();
-};
-
-const animateShot = (shot) => {
-    shot.y = shot.y - SHOTS_SPEED;
-    
-    if (shot.y === 0) {
-        shot.hit = true;
+    this.draw = () => {
+        context.beginPath();
+        context.ellipse(this.x, this.y, SHOTS_SIZE / 2, SHOTS_SIZE / 2, 0, 0, 2 * Math.PI);
+        context.closePath();
+        context.fillStyle = "grey";
+        context.fill();
     }
-    
-    drawShot(shot);
-};
+}

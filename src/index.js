@@ -80,13 +80,17 @@ const canvas = document.getElementById('stars');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const starsInitialX = canvas.width / 2;
+const starsInitialY = canvas.height / 3;
 const stars = [];
 for (let i = 0; i < MAX_STARS; i++) {
-    const star = new Star(canvas.width / 2, canvas.height / 3);
+    const star = new Star(starsInitialX, starsInitialY);
     stars.push(star);
 }
 
-const ship = new Ship(canvas.width / 2, (canvas.height / 6) * 5);
+const shipInitialX = canvas.width / 2;
+const shipInitialY = (canvas.height / 6) * 5;
+const ship = new Ship(shipInitialX, shipInitialY);
 
 bindKeys(ship);
 

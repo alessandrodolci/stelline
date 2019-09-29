@@ -29,7 +29,7 @@ Star.prototype.respawn = function () {
     this.cycles = 0;
 };
 
-Star.prototype.draw = function (){
+Star.prototype.draw = function () {
     context.beginPath();
     context.ellipse(this.x, this.y, this.size / 2, this.size / 2, 0, 0, 2 * Math.PI);
     context.closePath();

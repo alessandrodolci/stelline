@@ -1,5 +1,5 @@
 import { MAX_STAR_SIZE } from "./star";
-import { SHOTS_SPEED } from "./ship";
+import { SHOT_SPEED } from "./ship";
 
 const CYCLES_THRESHOLD = 200;
 
@@ -47,7 +47,7 @@ export const animateStars = (stars) => {
 };
 
 const animateShot = (shot) => {
-    shot.y = shot.y - SHOTS_SPEED;
+    shot.y = shot.y - SHOT_SPEED;
     
     if (shot.y === 0) {
         shot.hit = true;
@@ -66,7 +66,7 @@ const isShipColliding = (star, ship) => {
     return false;
 };
 
-const showGameOver = () => {
+const drawGameOver = () => {
     context.fillStyle = "white";
     context.font = "72px mono";
     context.textAlign = "center";
@@ -83,7 +83,7 @@ const endGame = (stars, ship) => {
         stars[i].visible = false;
     }
 
-    showGameOver();
+    drawGameOver();
 
     gameOver = true;
 };

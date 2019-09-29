@@ -6,7 +6,7 @@ export const SHIP_HORIZONTAL_SPEED = 1;
 export const SHIP_VERTICAL_SPEED = 0.4;
 
 const SHOT_SIZE = 4;
-export const SHOTS_SPEED = 4;
+export const SHOT_SPEED = 4;
 
 const canvas = document.getElementById('stars');
 const context = canvas.getContext('2d');
@@ -20,6 +20,42 @@ export function Ship(initialX, initialY) {
 Ship.prototype = Object.create(CanvasObject.prototype);
 Ship.prototype.constructor = Ship;
 
+Ship.prototype.getNoseXCoordinate = function () {
+    return this.x;
+}
+
+Ship.prototype.getNoseYCoordinate = function () {
+    return this.y - this.size / 2;
+};
+
+Ship.prototype.getLeftWingXCoordinate = function () {
+    return this.x - this.size;
+};
+
+Ship.prototype.getRightWingXCoordinate = function () {
+    return this.x + this.size;
+};
+
+Ship.prototype.getWingsYCoordinate = function () {
+    return this.y + this.size / 4;
+};
+
+Ship.prototype.getTopXCoordinate = function () {
+    return this.x;
+}
+
+Ship.prototype.getTopYCoordinate = function () {
+    return this.y - this.size / 8;
+};
+
+Ship.prototype.getRearXCoordinate = function () {
+    return this.x;
+}
+
+Ship.prototype.getRearYCoordinate = function () {
+    return this.y + this.size / 3;
+};
+
 Ship.prototype.moveVertically = function (speed) {
     this.y += speed;
     this.size += speed / 6;
@@ -32,20 +68,20 @@ Ship.prototype.moveHorizontally = function (speed) {
 Ship.prototype.draw = function () {
     context.beginPath();
 
-    context.moveTo(this.x - this.size, this.y + this.size / 4);
-    context.lineTo(this.x, this.y - this.size / 2);
-    context.lineTo(this.x + this.size, this.y + this.size / 4);
-    context.lineTo(this.x, this.y + this.size / 3);
-    context.lineTo(this.x - this.size, this.y + this.size / 4);
+    context.moveTo(this.getLeftWingXCoordinate(), this.getWingsYCoordinate());
+    context.lineTo(this.getNoseXCoordinate(), this.getNoseYCoordinate());
+    context.lineTo(this.getRightWingXCoordinate(), this.getWingsYCoordinate());
+    context.lineTo(this.getRearXCoordinate(), this.getRearYCoordinate());
+    context.lineTo(this.getLeftWingXCoordinate(), this.getWingsYCoordinate());
 
-    context.moveTo(this.x, this.y - this.size / 8);
-    context.lineTo(this.x - this.size, this.y + this.size / 4);
+    context.moveTo(this.getTopXCoordinate(), this.getTopYCoordinate());
+    context.lineTo(this.getLeftWingXCoordinate(), this.getWingsYCoordinate());
 
-    context.moveTo(this.x, this.y - this.size / 8);
-    context.lineTo(this.x + this.size, this.y + this.size / 4);
+    context.moveTo(this.getTopXCoordinate(), this.getTopYCoordinate());
+    context.lineTo(this.getRightWingXCoordinate(), this.getWingsYCoordinate());
 
-    context.moveTo(this.x, this.y - this.size / 8);
-    context.lineTo(this.x, this.y - this.size / 2);
+    context.moveTo(this.getTopXCoordinate(), this.getTopYCoordinate());
+    context.lineTo(this.getNoseXCoordinate(), this.getNoseYCoordinate());
 
     context .closePath();
     context.strokeStyle = "white";
@@ -54,7 +90,7 @@ Ship.prototype.draw = function () {
 }
 
 Ship.prototype.fireShot = function (targetX, targetY) {
-    this.shots.push(new Shot(this.x, this.y - this.size / 2, targetX, targetY));
+    this.shots.push(new Shot(this.getNoseXCoordinate(), this.getNoseYCoordinate(), targetX, targetY));
 };
 
 function Shot(originX, originY, targetX, targetY) {

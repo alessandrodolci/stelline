@@ -58,7 +58,7 @@ const animateShot = (shot) => {
 
 const isShipColliding = (star, ship) => {
     if (ship.x - star.x < ship.size && ship.x - star.x > -ship.size
-        && ship.y - star.y < ship.size && ship.y - star.y > -ship.size
+        && ship.y - star.y < ship.size / 2 && ship.y - star.y > -ship.size / 2
         && star.visible === true) {
         return true;
     }
@@ -75,6 +75,7 @@ const drawGameOver = () => {
 
 const endGame = (stars, ship) => {
     ship.visible = false;
+    
     for (let i = 0; i < ship.shots.length; i++) {
         ship.shots[i].hit = true;
     }

@@ -22,7 +22,7 @@ Ship.prototype.constructor = Ship;
 
 Ship.prototype.getNoseXCoordinate = function () {
     return this.x;
-}
+};
 
 Ship.prototype.getNoseYCoordinate = function () {
     return this.y - this.size / 2;
@@ -42,7 +42,7 @@ Ship.prototype.getWingsYCoordinate = function () {
 
 Ship.prototype.getTopXCoordinate = function () {
     return this.x;
-}
+};
 
 Ship.prototype.getTopYCoordinate = function () {
     return this.y - this.size / 8;
@@ -50,7 +50,7 @@ Ship.prototype.getTopYCoordinate = function () {
 
 Ship.prototype.getRearXCoordinate = function () {
     return this.x;
-}
+};
 
 Ship.prototype.getRearYCoordinate = function () {
     return this.y + this.size / 3;
@@ -87,7 +87,7 @@ Ship.prototype.draw = function () {
     context.strokeStyle = "white";
     context.lineWidth = SHIP_LINE_WIDTH;
     context.stroke();
-}
+};
 
 Ship.prototype.fireShot = function (targetX, targetY) {
     this.shots.push(new Shot(this.getNoseXCoordinate(), this.getNoseYCoordinate(), targetX, targetY));

@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack --config webpack.config.js --mode=production",
-        "test": "jest"
+        "test": "jest",
+        "lint": "node_modules/.bin/eslint src/"
     },
     "repository": {
         "type": "git",
@@ -27,6 +28,7 @@
     },
     "homepage": "https://github.com/alessandrodolci/stelline#readme",
     "devDependencies": {
+        "eslint": "^6.5.1",
         "webpack": "^4.40.2",
         "webpack-cli": "^3.3.8"
     },

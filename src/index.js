@@ -29,11 +29,11 @@ const bindKeys = (ship) => {
             default:
                 break;
         }
-    }
+    };
 
     window.onclick = (e) => {
         ship.fireShot(e.clientX, e.clientY);
-    }
+    };
 };
 
 const listenToOrientationChange = (ship, stars) => {
@@ -53,7 +53,7 @@ const listenToOrientationChange = (ship, stars) => {
     };
 
     const orientationListener = (event) => {
-        const beta = event.beta - initialBeta;
+        let beta = event.beta - initialBeta;
         const gamma = event.gamma - initialGamma;
 
         if (beta > 90) {

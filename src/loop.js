@@ -68,9 +68,12 @@ const isShipColliding = (star, ship) => {
 
 const drawGameOver = () => {
     context.fillStyle = "white";
-    context.font = "72px mono";
     context.textAlign = "center";
+    context.font = "72px monospace";
     context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
+
+    context.font = "38px monospace";
+    context.fillText("Tap or press space bar to restart", canvas.width / 2, canvas.height / 2 + 80);
 };
 
 const endGame = (stars, ship) => {

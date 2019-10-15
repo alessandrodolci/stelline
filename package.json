@@ -4,7 +4,7 @@
     "description": "A simple demo using CanvasRenderingContext2D",
     "main": "index.js",
     "scripts": {
-        "build": "webpack --config webpack.config.js --mode=production",
+        "build": "npm run lint && webpack --config webpack.config.js --mode=production",
         "test": "jest",
         "lint": "node_modules/.bin/eslint src/"
     },

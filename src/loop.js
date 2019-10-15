@@ -69,32 +69,38 @@ const isShipColliding = (star, ship) => {
 const drawGameOver = () => {
     context.fillStyle = "white";
     context.textAlign = "center";
-    context.font = "72px monospace";
+    context.font = "60px monospace";
     context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
 
     context.font = "38px monospace";
     context.fillText("Tap to restart", canvas.width / 2, canvas.height / 2 + 80);
 };
 
-const endGame = (stars, ship) => {
-    ship.visible = false;
+const toggleObjectsVisibility = (stars, ship) => {
+    ship.visible = !gameOver;
     
     for (let i = 0; i < ship.shots.length; i++) {
-        ship.shots[i].hit = true;
+        ship.shots[i].hit = gameOver;
     }
 
     for (let i = 0; i < stars.length; i++) {
-        stars[i].visible = false;
+        stars[i].visible = !gameOver;
     }
+};
 
+const endGame = (stars, ship) => {
     gameOver = true;
+
+    toggleObjectsVisibility(stars, ship);
 
     drawGameOver();
 
     window.addEventListener(
-        "touchend",
+        "keydown",
         () => {
             gameOver = false;
+
+            toggleObjectsVisibility(stars, ship);
 
             stars.forEach((star) => star.respawn());
             ship.setPosition(canvas.width / 2, (canvas.height / 6) * 5);

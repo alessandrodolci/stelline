@@ -4,9 +4,19 @@ import { animate } from "./loop";
 
 const MAX_STARS = 200;
 
+export function getNewStars() {
+    const stars = [];
+    for (let i = 0; i < MAX_STARS; i++) {
+        const star = new Star(canvas.width / 2, canvas.height / 3);
+        stars.push(star);
+    }
+
+    return stars;
+}
+
 const bindKeys = (ship) => {
     window.onkeydown = (e) => {
-        switch (e.code) {
+        switch (e.key) {
             case "ArrowLeft":
             case "KeyA":
                 ship.moveHorizontally(-SHIP_HORIZONTAL_SPEED);
@@ -80,17 +90,9 @@ const canvas = document.getElementById('stars');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const starsInitialX = canvas.width / 2;
-const starsInitialY = canvas.height / 3;
-const stars = [];
-for (let i = 0; i < MAX_STARS; i++) {
-    const star = new Star(starsInitialX, starsInitialY);
-    stars.push(star);
-}
+const stars = getNewStars();
 
-const shipInitialX = canvas.width / 2;
-const shipInitialY = (canvas.height / 6) * 5;
-const ship = new Ship(shipInitialX, shipInitialY);
+const ship = new Ship(canvas.width / 2, (canvas.height / 6) * 5);
 
 bindKeys(ship);
 

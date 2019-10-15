@@ -20,6 +20,11 @@ export function Ship(initialX, initialY) {
 Ship.prototype = Object.create(CanvasObject.prototype);
 Ship.prototype.constructor = Ship;
 
+Ship.prototype.setPosition = function (x, y) {
+    this.x = x;
+    this.y = y;
+};
+
 Ship.prototype.getNoseXCoordinate = function () {
     return this.x;
 };

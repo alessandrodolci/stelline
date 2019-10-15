@@ -73,7 +73,7 @@ const drawGameOver = () => {
     context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
 
     context.font = "38px monospace";
-    context.fillText("Tap or press space bar to restart", canvas.width / 2, canvas.height / 2 + 80);
+    context.fillText("Tap to restart", canvas.width / 2, canvas.height / 2 + 80);
 };
 
 const endGame = (stars, ship) => {
@@ -87,9 +87,22 @@ const endGame = (stars, ship) => {
         stars[i].visible = false;
     }
 
+    gameOver = true;
+
     drawGameOver();
 
-    gameOver = true;
+    window.addEventListener(
+        "touchend",
+        () => {
+            gameOver = false;
+
+            stars.forEach((star) => star.respawn());
+            ship.setPosition(canvas.width / 2, (canvas.height / 6) * 5);
+
+            animate(ship, stars);
+        },
+        { once: true }
+    );
 };
 
 const checkShipCollisions = (stars, ship) => {

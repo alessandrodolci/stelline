@@ -95,7 +95,7 @@ const endGame = (stars, ship) => {
 
     drawGameOver();
 
-    window.addEventListener(
+    canvas.addEventListener(
         "pointerup",
         () => {
             gameOver = false;

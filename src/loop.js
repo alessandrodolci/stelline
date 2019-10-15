@@ -96,7 +96,7 @@ const endGame = (stars, ship) => {
     drawGameOver();
 
     window.addEventListener(
-        "touchend",
+        "pointerup",
         () => {
             gameOver = false;
 

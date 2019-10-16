@@ -11,6 +11,7 @@ let gameOver = false;
 
 const showScore = () => {
     context.fillStyle = "white";
+    context.textAlign = "left";
     context.font = "24px mono";
     context.fillText("SCORE: " + score, 10, 30);
 };

@@ -25,6 +25,10 @@ Ship.prototype.setPosition = function (x, y) {
     this.y = y;
 };
 
+Ship.prototype.resetSize = function () {
+    this.size = SHIP_SIZE;
+};
+
 Ship.prototype.getNoseXCoordinate = function () {
     return this.x;
 };

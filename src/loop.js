@@ -104,6 +104,7 @@ const endGame = (stars, ship) => {
             toggleObjectsVisibility(stars, ship);
 
             stars.forEach((star) => star.respawn());
+            ship.resetSize();
             ship.setPosition(canvas.width / 2, (canvas.height / 6) * 5);
 
             animate(ship, stars);

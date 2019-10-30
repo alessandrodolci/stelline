@@ -1,6 +1,7 @@
 import { Ship, SHIP_HORIZONTAL_SPEED, SHIP_VERTICAL_SPEED } from "./ship";
 import { Star } from "./star";
 import { animate } from "./loop";
+import { deviceHasTouchScreen } from "./utils";
 
 const MAX_STARS = 200;
 
@@ -40,6 +41,13 @@ const bindKeys = (ship) => {
                 break;
         }
     };
+
+    if (!deviceHasTouchScreen()) {
+        window.onwheel = (e) => {
+            ship.moveHorizontally(e.deltaX);
+            ship.moveVertically(e.deltaY);
+        };
+    }
 
     window.onclick = (e) => {
         ship.fireShot(e.clientX, e.clientY);

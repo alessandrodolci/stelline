@@ -4,4 +4,4 @@ A simple interactive demo to try out HTML5 canvas tag and CanvasRenderingContext
 
 Best suited for mobile devices.
 
-[Try it out](https://alessandrodolci.github.io/stelline/dist/index.html)
+[Try it out](https://alessandrodolci.github.io/stelline)

@@ -74,6 +74,7 @@ const listenToOrientationChange = (ship, stars) => {
         const beta = Math.min(Math.max(event.beta - initialBeta, -90), 90);
         const gamma = event.gamma - initialGamma;
 
+        ship.moveHorizontally(gamma / 40);
         ship.moveVertically(beta / 20);
 
         for (let i = 0; i < stars.length; i++) {

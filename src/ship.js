@@ -75,6 +75,9 @@ Ship.prototype.moveHorizontally = function (speed) {
 };
 
 Ship.prototype.draw = function () {
+    const horizontalSkew = 2 * this.getTopXCoordinate() / canvas.width - 1;
+    context.setTransform(new DOMMatrix([1, 0, horizontalSkew, 1, 0, 0]));
+
     context.beginPath();
 
     context.moveTo(this.getLeftWingXCoordinate(), this.getWingsYCoordinate());
@@ -96,6 +99,8 @@ Ship.prototype.draw = function () {
     context.strokeStyle = "white";
     context.lineWidth = SHIP_LINE_WIDTH;
     context.stroke();
+    
+    context.setTransform();
 };
 
 Ship.prototype.fireShot = function (targetX, targetY) {

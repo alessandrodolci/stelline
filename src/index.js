@@ -71,15 +71,8 @@ const listenToOrientationChange = (ship, stars) => {
     };
 
     const orientationListener = (event) => {
-        let beta = event.beta - initialBeta;
+        const beta = Math.min(Math.max(event.beta - initialBeta, -90), 90);
         const gamma = event.gamma - initialGamma;
-
-        if (beta > 90) {
-            beta = 90;
-        }
-        if (beta < -90) {
-            beta = -90;
-        }
 
         ship.moveVertically(beta / 20);
 

@@ -5,6 +5,9 @@ module.exports = {
     output: {
         filename: "main.js"
     },
+    devServer: {
+        port: 3000
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./index.html"

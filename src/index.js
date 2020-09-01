@@ -55,23 +55,20 @@ const bindKeys = (ship) => {
 };
 
 const listenToOrientationChange = (ship, stars) => {
+    const clamp = (value, min, max) => {
+        return Math.min(Math.max(value, min), max);
+    };
+
     let initialBeta = 0;
     let initialGamma = 0;
 
     const initialListener = (event) => {
-        initialBeta = event.beta;
+        initialBeta = clamp(event.beta, -90, 90);
         initialGamma = event.gamma;
-
-        if (initialBeta > 90) {
-            initialBeta = 90;
-        }
-        if (initialBeta < -90) {
-            initialBeta = -90;
-        }
     };
 
     const orientationListener = (event) => {
-        const beta = Math.min(Math.max(event.beta - initialBeta, -90), 90);
+        const beta = clamp(event.beta - initialBeta, -90, 90);
         const gamma = event.gamma - initialGamma;
 
         ship.moveHorizontally(gamma / 40);

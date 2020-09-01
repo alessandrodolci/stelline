@@ -1,6 +1,7 @@
 import { CanvasObject } from "./canvas-object";
 
 const SHIP_SIZE = 30;
+const SHIP_SCALE = 20;
 const SHIP_LINE_WIDTH = 1.5;
 export const SHIP_HORIZONTAL_SPEED = 1;
 export const SHIP_VERTICAL_SPEED = 0.4;
@@ -66,8 +67,15 @@ Ship.prototype.getRearYCoordinate = function () {
 };
 
 Ship.prototype.moveVertically = function (speed) {
-    this.y += speed;
-    this.size += speed / 6;
+    const deltaX = canvas.width/2 - this.x;
+    const deltaY = canvas.height/2 - this.y;
+    const direction = Math.atan2(deltaY, deltaX);
+    this.x -= speed * Math.cos(direction);
+
+    if (this.y > canvas.height/2) {
+        this.y -= speed * Math.sin(direction);
+        this.size += speed / SHIP_SCALE;
+    }
 };
 
 Ship.prototype.moveHorizontally = function (speed) {
@@ -99,7 +107,7 @@ Ship.prototype.draw = function () {
     context.strokeStyle = "white";
     context.lineWidth = SHIP_LINE_WIDTH;
     context.stroke();
-    
+
     context.setTransform();
 };
 

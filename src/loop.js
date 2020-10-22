@@ -1,8 +1,6 @@
 import { MAX_STAR_SIZE } from "./star";
 import { SHOT_SPEED } from "./ship";
 
-const CYCLES_THRESHOLD = 200;
-
 const canvas = document.getElementById('stars');
 const context = canvas.getContext('2d');
 
@@ -21,14 +19,7 @@ export const animateStars = (stars) => {
         let star = stars[i];
 
         if (star.visible) {
-            if (star.cycles > CYCLES_THRESHOLD && star.size < MAX_STAR_SIZE) {
-                star.size++;
-                star.cycles = 0;
-            }
-
             star.draw();
-            
-            star.cycles++;
         }
         else if (Math.random() > 0.995) {
             star.visible = true;
@@ -43,6 +34,11 @@ export const animateStars = (stars) => {
             }
             
             star.respawn();
+        }
+        else if (star.size < MAX_STAR_SIZE) {
+            star.size += star.size * 0.002;
+            star.vx += star.vx * 0.006;
+            star.vy += star.vy * 0.004;
         }
     }
 };

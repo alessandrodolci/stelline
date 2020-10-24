@@ -1,5 +1,6 @@
 import { MAX_STAR_SIZE } from "./star";
 import { SHOT_SPEED } from "./ship";
+import { getNewStars } from ".";
 
 const canvas = document.getElementById('stars');
 const context = canvas.getContext('2d');
@@ -21,12 +22,12 @@ export const animateStars = (stars) => {
         if (star.visible) {
             star.draw();
         }
-        else if (Math.random() > 0.995) {
+        else if (Math.random() > 0.1) {
             star.visible = true;
         }
 
-        star.x += star.vx;
-        star.y += star.vy;
+        star.move();
+
         if (star.x > canvas.width - star.size || star.x < star.size
             || star.y > canvas.height - star.size || star.y < star.size) {
             if (star.y > canvas.height - star.size) {
@@ -34,11 +35,10 @@ export const animateStars = (stars) => {
             }
             
             star.respawn();
+            star.move(Math.random() * (canvas.width/3));
         }
-        else if (star.size < MAX_STAR_SIZE) {
-            star.size += star.size * 0.002;
-            star.vx += star.vx * 0.006;
-            star.vy += star.vy * 0.004;
+        else {
+            star.scale();
         }
     }
 };
@@ -99,7 +99,7 @@ const endGame = (stars, ship) => {
 
             toggleObjectsVisibility(stars, ship);
 
-            stars.forEach((star) => star.respawn());
+            stars = getNewStars();
             ship.resetSize();
             ship.setPosition(canvas.width / 2, (canvas.height / 6) * 5);
 

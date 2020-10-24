@@ -9,6 +9,9 @@ export function getNewStars() {
     const stars = [];
     for (let i = 0; i < MAX_STARS; i++) {
         const star = new Star(canvas.width / 2, canvas.height / 3);
+
+        star.move(Math.random() * (canvas.width/3));
+
         stars.push(star);
     }
 

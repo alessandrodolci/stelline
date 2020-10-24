@@ -1,4 +1,3 @@
-import { MAX_STAR_SIZE } from "./star";
 import { SHOT_SPEED } from "./ship";
 import { getNewStars } from ".";
 

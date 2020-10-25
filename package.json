@@ -4,8 +4,8 @@
     "description": "A simple demo using CanvasRenderingContext2D",
     "main": "index.js",
     "scripts": {
-        "start": "webpack-dev-server --open",
-        "build": "npm run lint && webpack --config webpack.config.js --mode=production",
+        "start": "webpack-dev-server --open --env=development",
+        "build": "npm run lint && webpack --config webpack.config.js --env=production",
         "deploy": "git checkout master && npm run build && git subtree push --prefix dist origin gh-pages",
         "test": "jest",
         "lint": "node_modules/.bin/eslint src/"

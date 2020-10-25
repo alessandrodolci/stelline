@@ -34,8 +34,8 @@ export const animateStars = (stars) => {
                 score++;
             }
             
-            star = stars.splice(i, 1, new Star(canvas.width / 2, canvas.height / 3))[0];
-            star.move(Math.random() * (canvas.width/3));
+            stars[i] = new Star(canvas.width / 2, canvas.height / 3);
+            stars[i].move(Math.random() * (canvas.width/6));
         }
         else {
             star.scale();
@@ -129,8 +129,8 @@ const checkShotsCollisions = (stars, shots) => {
                 && star.visible === true) {
                 shot.hit = true;
                 
-                star = stars.splice(i, 1, new Star(canvas.width / 2, canvas.height / 3))[0];
-                star.move(Math.random() * (canvas.width/3));
+                stars[i] = new Star(canvas.width / 2, canvas.height / 3);
+                stars[i].move(Math.random() * (canvas.width/6));
             }
         }
     }

@@ -1,4 +1,5 @@
 import { SHOT_SPEED } from "./ship";
+import { Star } from "./star";
 import { getNewStars } from ".";
 
 const canvas = document.getElementById('stars');
@@ -33,7 +34,7 @@ export const animateStars = (stars) => {
                 score++;
             }
             
-            star.respawn();
+            star = stars.splice(i, 1, new Star(canvas.width / 2, canvas.height / 3))[0];
             star.move(Math.random() * (canvas.width/3));
         }
         else {
@@ -120,14 +121,16 @@ const checkShipCollisions = (stars, ship) => {
 
 const checkShotsCollisions = (stars, shots) => {
     for (let i = 0; i < stars.length; i++) {
-        const star = stars[i];
+        let star = stars[i];
         for (let j = 0; j < shots.length; j++) {
             const shot = shots[j];
             if (shot.x - star.x < star.size && shot.x - star.x > -star.size
                 && shot.y - star.y < star.size && shot.y - star.y > -star.size
                 && star.visible === true) {
                 shot.hit = true;
-                star.respawn();
+                
+                star = stars.splice(i, 1, new Star(canvas.width / 2, canvas.height / 3))[0];
+                star.move(Math.random() * (canvas.width/3));
             }
         }
     }

@@ -54,13 +54,15 @@ const animateShot = (shot) => {
 };
 
 const isShipColliding = (star, ship) => {
-    if (ship.x - star.x < ship.size && ship.x - star.x > -ship.size
+    return ship.x - star.x < ship.size && ship.x - star.x > -ship.size
         && ship.y - star.y < ship.size / 2 && ship.y - star.y > -ship.size / 2
-        && star.visible === true) {
-        return true;
-    }
+        && star.visible;
+};
 
-    return false;
+const isShotColliding = (star, shot) => {
+    return shot.x - star.x < star.size && shot.x - star.x > -star.size
+        && shot.y - star.y < star.size && shot.y - star.y > -star.size
+        && star.visible;
 };
 
 const drawGameOver = () => {
@@ -124,9 +126,7 @@ const checkShotsCollisions = (stars, shots) => {
         let star = stars[i];
         for (let j = 0; j < shots.length; j++) {
             const shot = shots[j];
-            if (shot.x - star.x < star.size && shot.x - star.x > -star.size
-                && shot.y - star.y < star.size && shot.y - star.y > -star.size
-                && star.visible === true) {
+            if (isShotColliding(star, shot)) {
                 shot.hit = true;
                 
                 stars[i] = new Star(canvas.width / 2, canvas.height / 3);

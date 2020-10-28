@@ -3,6 +3,7 @@ import { CanvasObject } from "./canvas-object";
 const SHIP_SIZE = 30;
 const SHIP_SCALE = 20;
 const SHIP_LINE_WIDTH = 1.5;
+const SHIP_SKEW_FACTOR = 0.02;
 export const SHIP_HORIZONTAL_SPEED = 1;
 export const SHIP_VERTICAL_SPEED = 0.4;
 
@@ -20,6 +21,8 @@ export function Ship(initialX, initialY) {
 
 Ship.prototype = Object.create(CanvasObject.prototype);
 Ship.prototype.constructor = Ship;
+
+const getShipHorizontalSkew = (shipX) => ((canvas.width / 2) - shipX) * SHIP_SKEW_FACTOR;
 
 Ship.prototype.setPosition = function (x, y) {
     this.x = x;
@@ -39,11 +42,11 @@ Ship.prototype.getNoseYCoordinate = function () {
 };
 
 Ship.prototype.getLeftWingXCoordinate = function () {
-    return this.x - this.size;
+    return this.x - this.size - getShipHorizontalSkew(this.x);
 };
 
 Ship.prototype.getRightWingXCoordinate = function () {
-    return this.x + this.size;
+    return this.x + this.size - getShipHorizontalSkew(this.x);
 };
 
 Ship.prototype.getWingsYCoordinate = function () {
@@ -51,7 +54,7 @@ Ship.prototype.getWingsYCoordinate = function () {
 };
 
 Ship.prototype.getTopXCoordinate = function () {
-    return this.x;
+    return this.x - getShipHorizontalSkew(this.x);
 };
 
 Ship.prototype.getTopYCoordinate = function () {
@@ -59,7 +62,7 @@ Ship.prototype.getTopYCoordinate = function () {
 };
 
 Ship.prototype.getRearXCoordinate = function () {
-    return this.x;
+    return this.x - getShipHorizontalSkew(this.x);
 };
 
 Ship.prototype.getRearYCoordinate = function () {
@@ -83,9 +86,6 @@ Ship.prototype.moveHorizontally = function (speed) {
 };
 
 Ship.prototype.draw = function () {
-    const horizontalSkew = 2 * this.getTopXCoordinate() / canvas.width - 1;
-    context.setTransform(new DOMMatrix([1, 0, horizontalSkew, 1, 0, 0]));
-
     context.beginPath();
 
     context.moveTo(this.getLeftWingXCoordinate(), this.getWingsYCoordinate());
@@ -107,8 +107,6 @@ Ship.prototype.draw = function () {
     context.strokeStyle = "white";
     context.lineWidth = SHIP_LINE_WIDTH;
     context.stroke();
-
-    context.setTransform();
 };
 
 Ship.prototype.fireShot = function (targetX, targetY) {

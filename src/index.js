@@ -74,13 +74,8 @@ const listenToOrientationChange = (ship, stars) => {
         const beta = clamp(event.beta - initialBeta, -90, 90);
         const gamma = event.gamma - initialGamma;
 
-        ship.moveHorizontally(gamma / 40);
-        ship.moveVertically(beta / 20);
-
-        for (let i = 0; i < stars.length; i++) {
-            stars[i].x -= gamma / 5;
-            stars[i].y += beta / 5;
-        }
+        ship.moveHorizontally(gamma / 20);
+        ship.moveVertically(beta / 10);
     };
 
     window.addEventListener("deviceorientation", initialListener, { once: true });

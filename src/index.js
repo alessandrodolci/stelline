@@ -57,7 +57,7 @@ const bindKeys = (ship) => {
     };
 };
 
-const listenToOrientationChange = (ship, stars) => {
+const listenToOrientationChange = (ship) => {
     const clamp = (value, min, max) => {
         return Math.min(Math.max(value, min), max);
     };
